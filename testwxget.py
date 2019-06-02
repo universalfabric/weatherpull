@@ -12,8 +12,4 @@ def response(url):
 
 res = response(url)
 wxdata = json.loads(res)
-print(type(wxdata))
-print(wxdata['main'])
-print(type(wxdata['main']))
-print(wxdata['main']['temp'])
-print(type(wxdata['main']['temp']))
+print(wxdata)

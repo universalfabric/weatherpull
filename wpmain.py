@@ -12,9 +12,21 @@ import time
 from threading import Thread
 import sys
 
+import urllib.request
+import json
+from wpconfigs import *
 
-#  RECHECK_INTERVAL = 6
+def response(url):
+    with urllib.request.urlopen(url) as response:
+        return response.read()
 
+
+# wxdata = json.loads(response(URL))
+
+
+
+# resp = response(URL)
+# wxdata = json.loads(resp)
 
 def openfile():
     pass
@@ -23,8 +35,8 @@ def openfile():
 def waitloop():
     """This loop delays for a set # of seconds between API calls."""
     for n in range(RECHECK_INTERVAL, 0, -1):
-        time.sleep(1)
-        print("Next call in {} seconds.".format(n))
+        time.sleep(5)
+        print("Next call in {} minutes.".format(n))
     return
 
 
@@ -42,10 +54,15 @@ if __name__ == '__main__':
     #  TODO Add the open and close csv file code in this main loop structure
     while True:
         try:
-            ctr += 1
-            print("Making API call #{}".format(ctr))
-            getwxinfo()
-            waitloop()
+            with open(OUTPUT_FILE, 'w+') as wf:
+                ctr += 1
+                print("Making API call #{}".format(ctr))
+                wxdata = json.loads(response(URL))
+                wrtline = "API call #{}, ".format(ctr) + str(wxdata) + "\n"
+                #print(wf.closed())
+                print(wrtline)
+                wf.write(wrtline)
+                waitloop()
         except KeyboardInterrupt:
             print("This is the exit path")
             sys.exit(0)

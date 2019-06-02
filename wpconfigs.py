@@ -1,8 +1,12 @@
 # These are the configuration constants for my Weather Pull code.
 # minor change to test git push
 CITY = "CHICAGO"
-OUTPUT_FILE = "wxoutput.csv"
-RECHECK_INTERVAL = 9  # / 60 SECONDS = 10 MINUTES
+OUTPUT_FILE = "wxoutput.txt"
+RECHECK_INTERVAL = 1  # IN MINUTES
+
+URL = "http://api.openweathermap.org/data/2.5/" \
+      "weather?zip=60073,us&APPID=b169533341072045445577086b3041fd"
+
 
 WXKEY = "b169533341072045445577086b3041fd" # This is my API key for openweathermap.org
 
