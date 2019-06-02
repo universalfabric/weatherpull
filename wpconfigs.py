@@ -1,4 +1,5 @@
 # These are the configuration constants for my Weather Pull code.
+# minor change to test git push
 CITY = "CHICAGO"
 OUTPUT_FILE = "wxoutput.csv"
 RECHECK_INTERVAL = 9  # / 60 SECONDS = 10 MINUTES
