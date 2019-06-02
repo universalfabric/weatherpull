@@ -12,20 +12,23 @@ import time
 from threading import Thread
 import sys
 
+
 #  RECHECK_INTERVAL = 6
+
+
 def openfile():
     pass
 
 
 def waitloop():
     """This loop delays for a set # of seconds between API calls."""
-    for n in range(RECHECK_INTERVAL,0,-1):
+    for n in range(RECHECK_INTERVAL, 0, -1):
         time.sleep(1)
         print("Next call in {} seconds.".format(n))
     return
 
 
-def getWxInfo():
+def getwxinfo():
     """This function will make the API call and handle parsing the JSON data
     and writing it to the file"""
     print("Sim calling API")
@@ -36,18 +39,13 @@ def getWxInfo():
 
 if __name__ == '__main__':
     ctr = 0  # Loop counter for number of WX data calls.
-#  TODO Add the open and close csv file code in this main loop structure
+    #  TODO Add the open and close csv file code in this main loop structure
     while True:
-            try:
-                ctr += 1
-                print("Making API call #{}".format(ctr))
-                GetWxInfo()
-                waitLoop()
-            except KeyboardInterrupt:
-                print("This is the exit path")
-                sys.exit(0)
-
-
-
-
-
+        try:
+            ctr += 1
+            print("Making API call #{}".format(ctr))
+            getwxinfo()
+            waitloop()
+        except KeyboardInterrupt:
+            print("This is the exit path")
+            sys.exit(0)
