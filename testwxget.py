@@ -1,15 +1,9 @@
-# this is a test file to get the code right for getting the wx data.
-# once pulled, it will simply be displayed to the screen.
+""" This is a file to test proper input and output to a file."""
+import time
 
-import urllib.request
-import json
+for n in range(1, 20):
+    with open('testfileB.txt', 'a') as wf:
+        time.sleep(0.5)
+        wf.writelines("loop# {} \n".format(n))
+        print("loop# {} \n".format(n))
 
-url = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=b169533341072045445577086b3041fd'
-
-def response(url):
-    with urllib.request.urlopen(url) as response:
-        return response.read()
-
-res = response(url)
-wxdata = json.loads(res)
-print(wxdata)

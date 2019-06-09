@@ -7,11 +7,7 @@
 # 5. Write output to the CSV file, echo to terminal
 # 6. End the loop on exit code 0
 
-from wpconfigs import *
 import time
-from threading import Thread
-import sys
-
 import urllib.request
 import json
 from wpconfigs import *
@@ -21,48 +17,21 @@ def response(url):
         return response.read()
 
 
-# wxdata = json.loads(response(URL))
-
-
-
-# resp = response(URL)
-# wxdata = json.loads(resp)
-
-def openfile():
-    pass
-
-
-def waitloop():
-    """This loop delays for a set # of seconds between API calls."""
-    for n in range(RECHECK_INTERVAL, 0, -1):
-        time.sleep(5)
-        print("Next call in {} minutes.".format(n))
-    return
-
-
-def getwxinfo():
-    """This function will make the API call and handle parsing the JSON data
-    and writing it to the file"""
-    print("Sim calling API")
-    return
-
-
-#################  MAIN LOOP  ##################################
+################################
 
 if __name__ == '__main__':
-    ctr = 0  # Loop counter for number of WX data calls.
-    #  TODO Add the open and close csv file code in this main loop structure
-    while True:
-        try:
-            with open(OUTPUT_FILE, 'w+') as wf:
-                ctr += 1
-                print("Making API call #{}".format(ctr))
-                wxdata = json.loads(response(URL))
-                wrtline = "API call #{}, ".format(ctr) + str(wxdata) + "\n"
-                #print(wf.closed())
-                print(wrtline)
-                wf.write(wrtline)
-                waitloop()
-        except KeyboardInterrupt:
-            print("This is the exit path")
-            sys.exit(0)
+    for n in range (1, ITERATIONS):
+        with open(OUTPUT_FILE, 'a') as wf:
+            print("Making API call at {}".format(time.asctime()))
+            wxdata = json.loads(response(URLCONST))
+            now = time.gmtime()
+            prn_now = str("{}-{}-{} {:2}:{:2}:{:2}GMT,".format(now[0],
+                                                               now[1],
+                                                               now[2],
+                                                               now[3],
+                                                               now[4],
+                                                               now[5],
+                                                               now[6]))
+            wrtline = prn_now + str(wxdata) + "\n"
+            wf.writelines(wrtline)
+            time.sleep(60 * RECHECK_INTERVAL) # Sleep time between checks
