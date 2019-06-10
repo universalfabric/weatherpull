@@ -16,14 +16,16 @@ def response(url):
     with urllib.request.urlopen(url) as response:
         return response.read()
 
-
 ################################
 
 if __name__ == '__main__':
     for n in range (1, ITERATIONS):
         with open(OUTPUT_FILE, 'a') as wf:
             print("Making API call at {}".format(time.asctime()))
-            wxdata = json.loads(response(URLCONST))
+            try:
+                wxdata = json.loads(response(URLCONST))
+            except:
+                wxdata = "Load failed."
             now = time.gmtime()
             prn_now = str("{}-{}-{} {:2}:{:2}:{:2}GMT,".format(now[0],
                                                                now[1],

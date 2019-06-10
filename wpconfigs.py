@@ -2,7 +2,7 @@
 # minor change to test git push
 ZIPCODE = "60073"
 OUTPUT_FILE = "wxoutput.txt"
-RECHECK_INTERVAL = 1  # IN MINUTES
+RECHECK_INTERVAL = 0.25  # IN MINUTES
 ITERATIONS = 10000
 WXKEY = "b169533341072045445577086b3041fd" # This is my API key for openweathermap.org
 URLCONST = "http://api.openweathermap.org/data/2.5/weather?zip=60073,us&APPID=b169533341072045445577086b3041fd"
