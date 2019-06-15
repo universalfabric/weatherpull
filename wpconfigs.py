@@ -1,8 +1,8 @@
 # These are the configuration constants for my Weather Pull code.
 # minor change to test git push
-ZIPCODE = "60073"
+ZIPCODE = "95051"
 OUTPUT_FILE = "wxouttrial20190609.txt"
-RECHECK_INTERVAL = 10  # IN MINUTES
+RECHECK_INTERVAL = 0.5  # IN MINUTES
 ITERATIONS = 10000
 WXKEY = "b169533341072045445577086b3041fd" # This is my API key for openweathermap.org
 URLCONST = "http://api.openweathermap.org/data/2.5/weather?zip=60073,us&APPID=b169533341072045445577086b3041fd"
